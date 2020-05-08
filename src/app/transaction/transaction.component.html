@@ -1,0 +1,33 @@
+<h1>Transactions</h1>
+<div>
+  Select Savings Account :
+  <select class='select-option'
+          #mySelect
+          (change)='GetSavingsAccountTransaction(mySelect.value)'>
+    <option *ngFor="let account of savingsAccountList" [value]="account.accountNumber">{{account.fullName}} </option>
+  </select>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Transaction Id</th>
+    <th>Account Owner Name</th>
+    <th>Transaction Date</th>
+    <th>Available Balance</th>
+    <th>Transaction Type</th>
+    <th>Transaction Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactionList">
+    <td>{{transaction.id}}</td>
+    <td>{{transaction.savingsAccount.fullName}}</td>
+    <td>{{transaction.createdDate | date: 'MM/dd/yyyy - hh:mm'}}</td>
+    <td>{{transaction.availableBalance}}</td>
+    <td>{{transaction.type}}</td>
+    <td>{{transaction.amount}}</td>
+    <!--<td [hidden]="transaction.confirmed"><a (click)="confirmAppointment(appointment.id)" style="cursor: pointer;">Confirm</a></td>-->
+    <!-- <td [hidden]="!user.enabled"><a (click)="disableUser(user.username)" style="cursor: pointer;">Disable</a></td> -->
+  </tr>
+  </tbody>
+</table>
